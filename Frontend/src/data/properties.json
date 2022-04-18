@@ -1,0 +1,51 @@
+[
+    {
+      "Id": 1,
+      "SellRent": "Sell",
+      "Name": "Lake House",
+      "Type": "House",
+      "Price": 129900,
+      "Image": "house"
+    },
+    {
+       "Id": 2,
+       "SellRent": "Sell",
+      "Name": "Beach House",
+      "Type": "House",
+      "Price": 1200,
+      "Image": "house"
+
+    },
+    {
+       "Id": 3,
+       "SellRent": "Rent",
+      "Name": "Palm Floors",
+      "Type": "Office",
+      "Price": 129900,
+      "Image": "house"
+    },
+    {
+       "Id": 4,
+       "SellRent": "Sell",
+      "Name": "Crane House",
+      "Type": "House",
+      "Price": 1200,
+      "Image": "house"
+    },
+    {
+      "Id": 5,
+      "SellRent": "Rent",
+      "Name": "Jumia House",
+      "Type": "Office",
+      "Price": 1200,
+      "Image": "house"
+    },
+    {
+       "Id": 6,
+       "SellRent": "Sell",
+      "Name": "Paul House",
+      "Type": "House",
+      "Price": 129900
+    }
+
+  ]
