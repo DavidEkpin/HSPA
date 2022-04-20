@@ -18,12 +18,37 @@
       </ul>
       <div>
         <ul class="nav navbar-nav">
-          <li class="nav-item">
+          <li *ngIf="!isLoggedIn()" class="nav-item">
             <a class=" nav-link" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/user-register">Register</a>
           </li>
-          <li class="nav-item">
+          <li *ngIf="!isLoggedIn()" class="nav-item">
             <a class=" nav-link" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/user-login">Login</a>
           </li>
+
+          <!-- <li *ngIf="isLoggedIn()" class="nav-item">
+            <a class=" nav-link" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" (click)="logout()">Logout</a>
+          </li> -->
+
+          <div *ngIf="isLoggedIn()" class="dropdown me-5" dropdown>
+            <a href="#" class="dropdown-toggle text-light" dropdownToggle (click)="false">
+              welcome {{loggedInUser}}
+            </a>
+            <div class="dropdown-menu" *dropdownMenu>
+              <a href="#" class="dropdown-item">
+               <i class="fa-solid fa-gauge">View Dashboard</i>
+              </a>
+              <a href="#" class="dropdown-item">
+                <i class="fa-solid fa-user">My Profile</i>
+              </a>
+              <a href="#" class="dropdown-item">
+                <i class="fa-solid fa-key">Change Password</i>
+              </a>
+              <a (click)='logout()' class="dropdown-item">
+                <i class="fa-solid fa-sign-out">Logout</i>
+              </a>
+
+            </div>
+          </div>
         </ul>
       </div>
     </div>
