@@ -4,6 +4,9 @@ import { HttpClientModule } from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +21,10 @@ import { UserRegisterComponent } from './user/user-register/user-register.compon
 import { UserService } from './services/user.service';
 import { AlertifyService } from './services/alertify.service';
 import { AuthService } from './services/auth.service';
+import { PropertyDetailResolverServiceService } from './property/property-detail/PropertyDetailResolverService.service';
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { FilterPipe } from './Pipes/filter.pipe';
+import { SortPipe } from './Pipes/sort.pipe';
 
 
 @NgModule({
@@ -30,6 +37,8 @@ import { AuthService } from './services/auth.service';
     PropertyDetailComponent,
     UserLoginComponent,
     UserRegisterComponent,
+    FilterPipe,
+    SortPipe
   ],
   imports: [
     BrowserModule,
@@ -39,8 +48,18 @@ import { AuthService } from './services/auth.service';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
+    TabsModule.forRoot(),
+    ButtonsModule.forRoot(),
+    BsDatepickerModule.forRoot(),
+    NgxGalleryModule
   ],
-  providers: [HousingService, UserService, AlertifyService, AuthService],
+  providers: [
+    HousingService,
+    UserService,
+    AlertifyService,
+    AuthService,
+    PropertyDetailResolverServiceService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
