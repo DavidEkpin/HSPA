@@ -28,6 +28,7 @@ export class PropertyDetailComponent implements OnInit {
 
   ngOnInit() {
     this.propertyId = +this.route.snapshot.params['id'];
+    this.getProperty();
 
     this.galleryOptions = [
       {
@@ -35,7 +36,8 @@ export class PropertyDetailComponent implements OnInit {
         height: '465px',
         thumbnailsColumns: 4,
         imageAnimation: NgxGalleryAnimation.Slide,
-      },
+        preview: true
+      }
       /* // max-width 800
       {
         breakpoint: 800,
@@ -81,7 +83,8 @@ export class PropertyDetailComponent implements OnInit {
       },
     ];
 
-    this.getProperty();
+     console.log(this.galleryImages[0]);
+
 
     //Learn and implement angular resolvers
     /* this.route.data.subscribe(
