@@ -11,6 +11,10 @@ import { Property } from '../Model/property';
 export class HousingService {
   constructor(private http: HttpClient) {}
 
+  getCities(): Observable<string[]> {
+    return this.http.get<string[]>('http://localhost:5254/api/city');
+  }
+
   getProperty(id: number) {
     return this.http.get('data/properties.json').pipe(
       map((data) => {

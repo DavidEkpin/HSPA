@@ -24,6 +24,7 @@ export class AddPropertyComponent implements OnInit {
   nextTabSelected!: boolean;
   property = new Property();
   count = 0;
+  Cities: any[] = []
 
 
   @ViewChild('formTabs', { static: false })
@@ -54,6 +55,10 @@ export class AddPropertyComponent implements OnInit {
 
   ngOnInit() {
     this.CreateAddPropertyForm();
+
+    this.housingService.getCities().subscribe( data => {
+      this.Cities = data
+    })
 
     this.housingService.getAllProp().subscribe({
       next: (data) => {

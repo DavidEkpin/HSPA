@@ -115,7 +115,18 @@
 
             <div class="form-group col-12">
               <label>City</label>
-              <input type="text" class="form-control" formControlName="City"  [(ngModel)]="propertyView.City"/>
+              <select class="form-control" formControlName="City" [(ngModel)]="propertyView.City">
+                <option value="">--Select City --</option>
+                 <option *ngFor="let city of Cities" value={{city.id}}>{{city.name}}</option>
+              </select>
+              <span
+                *ngIf="!city.valid && city.touched || nextTabSelected"
+                class="error-block"
+              >
+                <span *ngIf="city.hasError('required')"
+                  >Please provide city</span
+                >
+              </span>
             </div>
 
             <div class="form-group col-12 mt-2">
