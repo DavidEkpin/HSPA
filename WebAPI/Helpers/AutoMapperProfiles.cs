@@ -9,6 +9,7 @@ namespace WebAPI.Helpers
         public AutoMapperProfiles()
         {
             CreateMap<City, CityDto>().ReverseMap();
+            CreateMap<User, LoginReqDto>().ReverseMap();
         }
 
     }

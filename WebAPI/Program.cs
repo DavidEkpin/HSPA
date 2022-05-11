@@ -1,6 +1,9 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System.Net;
+using System.Text;
 using WebAPI.Db;
 using WebAPI.Helpers;
 using WebAPI.Interfaces;
@@ -23,16 +26,31 @@ builder.Services.AddDbContext<DataContext>(options =>
 });
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+var secretKey = builder.Configuration["AppSettings:Key"];
+var Key = new SymmetricSecurityKey(Encoding.UTF32
+                .GetBytes(secretKey));
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            IssuerSigningKey = Key
+    };
+    });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 
 }
-
 app.UseMiddleware<ExceptionMiddleware>();
 //app.UseExceptionHandler(
 //    options =>
@@ -52,6 +70,9 @@ app.UseMiddleware<ExceptionMiddleware>();
 
 
 app.UseCors(m => m.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+
+app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllers();
